@@ -6,23 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Costa Rica Weather</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    <div class="jumbotron text-center" style="background-color: maroon">
+      <h1 style="color: wheat">Mission to Mars</h1>
+      <p><a class="btn btn-outline-success btn-lg" href="/scrape" role="button" style="color: white">Scrape New Data</a></p>
     </div>
 
+    <div class="row">
+      <div class="col-12">
+        <h2>Latest Mars News</h2>
+        <h3>{{planet_data.Planet_News.title}}</h3>
+        <p>{{planet_data.Planet_News.blurb}}</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Featured Mars Image</h2>
+        <br>
+        <img src="{{planet_data.Planet_Image.featured_img_url}}" alt="Featured Image">
+      </div>
 
-    <img src="{{ vacation.sloth_img }}" alt="Sloth">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
-  </div>
+      <div class="col-md-4">
+        {{planet_data.Planet_Facts.table}}
+      </div>
+    </div>
 
+    <div class="row">
+      {% for hemisphere in planet_data.Hemispheres}
+      <div class="col-md-3">
+        <div class="card" style="width: 40rem;">
+          <img src="{{ planet_data.Hemispheres.img_url}}">
+          <div class="card-body">
+            <h4 class="card-title">{{ planet_data.Hemispheres.title }}</h4>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 
 </body>

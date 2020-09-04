@@ -12,9 +12,9 @@ def scrape():
     news_title = news_title.strip()
     blurb_text = soup.select("p > i")[1].text
 
-    final_dict["NASA Mars News"] = {}
-    final_dict["NASA Mars News"]["Title"] = news_title
-    final_dict["NASA Mars News"]["Blurb"] = blurb_text
+    final_dict["Planet_News"] = {}
+    final_dict["Planet_News"]["title"] = news_title
+    final_dict["Planet_News"]["blurb"] = blurb_text
 
     #### JPL Mars Space Images
     images_url = r"https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -25,8 +25,8 @@ def scrape():
     mars_image_src = soupier.select(".img")[0].img["src"]
     featured_image_url = base_url + mars_image_src
 
-    final_dict["Mars Image"] = {}
-    final_dict["Mars Image"]["featured image url"] = featured_image_url
+    final_dict["Planet_Image"] = {}
+    final_dict["Planet_Image"]["featured_image_url"] = featured_image_url
 
     # the featured image of the mars search was of Saturn not Mars
 
@@ -39,8 +39,8 @@ def scrape():
     table.rename({0: "Facts", 1:"Mars"}, axis=1, inplace=True)
     table.to_html("table.html")
     
-    final_dict["Mars Facts"] = {}
-    final_dict["Mars Facts"]["table"] = table.to_html()
+    final_dict["Planet_Facts"] = {}
+    final_dict["Planet_Facts"]["table"] = table.to_html()
     
 
     # Hemisphere Requests
