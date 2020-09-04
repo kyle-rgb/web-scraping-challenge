@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Intergalatic Exploration</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
@@ -17,32 +17,43 @@
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" style="border: black;">
         <h2>Latest Mars News</h2>
+        <br>
         <h3>{{planet_data.Planet_News.title}}</h3>
         <p>{{planet_data.Planet_News.blurb}}</p>
       </div>
     </div>
     
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-lg-8">
         <h2>Featured Mars Image</h2>
         <br>
-        <img src="{{planet_data.Planet_Image.featured_img_url}}" alt="Featured Image">
+        <img src="{{planet_data.Planet_Image.featured_image_url}}" alt="Featured Image"></img>
       </div>
 
-      <div class="col-md-4">
-        {{planet_data.Planet_Facts.table}}
+      <div class="col-lg-4">
+        <h2 alignment="center">Mars Facts</h2>
+        <table class="table">
+          <tbody>
+            {% for key, value in planet_data.Planet_Facts.table.Mars.items() %}
+            <tr>
+              <th>{{ key }}</th>
+              <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
-
+    <br>
     <div class="row">
-      {% for hemisphere in planet_data.Hemispheres}
-      <div class="col-md-3">
-        <div class="card" style="width: 40rem;">
-          <img src="{{ planet_data.Hemispheres.img_url}}">
-          <div class="card-body">
-            <h4 class="card-title">{{ planet_data.Hemispheres.title }}</h4>
+      {% for hemisphere in planet_data.Hemispheres %}
+      <div class="col-lg-3 col-xs-6">
+        <div class="card" style="width: 25rem; height: 25rem;">
+          <img class="card-img-top" style="width: 25rem; height: 25rem;" src="{{hemisphere.img_url}}" alignment="center">
+          <div class="card-body" alignment="center">
+            <h4 class="card-title" style="color: maroon;"><b>{{hemisphere.title}}</b></h4>
           </div>
 
         </div>
